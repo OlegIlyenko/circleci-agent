@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Git-crypt uplock
+
+echo -e "$1" | base64 -d > gpg-key.private
+gpg --import gpg-key.private && git-crypt unlock

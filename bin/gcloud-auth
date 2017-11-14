@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# GClud auth and get credentials
+
+echo -e "$1" | base64 -d > gcloud-service-key.json
+gcloud auth activate-service-account --key-file gcloud-service-key.json
+gcloud container clusters get-credentials ${@:2}

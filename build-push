@@ -1,0 +1,4 @@
+name=tenshi/circleci-agent
+
+docker build -t $name:latest .
+docker push $name
