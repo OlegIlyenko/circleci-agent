@@ -1,4 +1,4 @@
-FROM alpine:edge
+FROM frolvlad/alpine-oraclejdk8:8.161.12-slim
 MAINTAINER Oleg Ilyenko
 
 # generic
@@ -14,7 +14,17 @@ RUN apk --update add \
     openssl \
     openssl-dev \
     gnupg \
-    python
+    python \
+    docker
+
+ENV SBT_VERSION="1.1.4"
+ENV SBT_FILENAME="sbt-${SBT_VERSION}.tgz"
+
+# Sbt
+RUN curl -L https://piccolo.link/${SBT_FILENAME} -o /tmp/${SBT_FILENAME} \
+    && tar -zxvf /tmp/${SBT_FILENAME} -C /tmp \
+    && mv /tmp/sbt /usr/lib/sbt \
+    && ln -s /usr/lib/sbt/bin/sbt /bin/sbt
 
 # GCE & Kube
 RUN curl https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.zip -o google-cloud-sdk.zip \
