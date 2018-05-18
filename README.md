@@ -9,5 +9,5 @@ Generic docker container for a Circle CI node that has a lot of usefull stuff fo
 * gpg
 * git-crypt
 * Java 8
-* sbt
-* Docker
+* Sbt
+* Docker & cdocker-compose
